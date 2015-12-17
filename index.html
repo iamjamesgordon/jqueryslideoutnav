@@ -1,0 +1,201 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>JQuery Menu slider</title>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+
+<style>
+
+html, body {
+	width: 100%;
+	height: 100%;
+	margin: 0;
+	padding: 0;
+	color: #fff;
+}
+
+nav {
+	width: 300px;
+	height: 100%;
+	position: fixed;
+	left: -300px;
+	top: 0;
+	background: #2c3e50;
+}
+
+ul {
+	list-style: none;
+	margin: 0 0 0 0;
+	padding: 0;
+}
+
+li {
+	margin-left: -300px;
+}
+
+#wrapper {
+	width: 100%;
+	height: 100%;
+	background: #1abc9c;
+	display: table;
+}
+
+.inner {
+	display: table-cell;
+	vertical-align: middle;
+	text-align: center;
+}
+
+#demo {
+	position: absolute;
+	top: 0;
+	right: 0;
+}
+
+.hamburger {
+	width: 30px;
+	height: 3px;
+	margin: 10px 0;
+	position: absolute;
+	top: 20px;
+	left: 20px;
+	background: #fff;
+	cursor: pointer;
+}
+
+.hamburger:before {
+	content: "";
+	width: 30px;
+	height: 3px;
+	position: absolute;
+	top: -10px;
+	background: #fff;
+}
+
+.hamburger:after {
+	content: "";
+	width: 30px;
+	height: 3px;
+	position: absolute;
+	top: 10px;
+	background: #fff;
+}
+
+.hamburger.active:after {
+	transform: rotate(45deg);
+	position: absolute;
+	top: 0;
+	visibility: visible;
+	background: #2c3e50;
+}
+
+.hamburger.active:before {
+	transform: rotate(-45deg);
+	position: absolute;
+	top: 0;
+	visibility: visible;
+	background: #2c3e50;
+}
+
+.hamburger.active {
+	visibility: hidden;
+}
+
+</style>
+
+</head>
+
+<body>
+
+<nav>
+
+	<ul>
+    	<li>About</li>
+    	<li>Services</li>
+    	<li>Portfolio</li>
+    	<li>Contact</li>
+    </ul>
+
+</nav>
+
+<div class="hamburger"></div>
+
+<div id="wrapper">
+
+	<div class="inner">
+    
+    	<h2></h2>
+            
+    </div>
+
+</div>
+
+</body>
+
+<script>
+
+$(document).ready(function() {
+	
+var navWidth = $("nav").width();
+
+$("#demo").text(navWidth);
+	
+$(".hamburger").click(function() {
+	
+	if ( $(this).hasClass("active") ) {
+		
+	$(this).removeClass("active");
+	$("nav").removeClass("active");
+	
+	$(this).animate({
+		
+		left: '-='+navWidth
+		
+	}, 500); // END HAMBURGER ANIMATION
+	
+	$("nav").animate({
+		
+		left: '-='+navWidth
+		
+	}, 500); // END NAV ANIMATION
+	
+	$("nav li").animate({
+		
+		marginLeft: '-=300px'
+		
+	}, 1000); // END NAV ANIMATION
+		
+
+} else {
+	
+	$(this).addClass("active");
+	$("nav").addClass("active");
+	
+	$(this).animate({
+		
+		left: '+='+navWidth
+		
+	}, 500); // END HAMBURGER ANIMATION
+	
+	$("nav").animate({
+		
+		left: '0px'
+		
+	}, 500); // END NAV ANIMATION
+	
+	$("nav li").animate({
+		
+		marginLeft: '0px'
+		
+	}, 1000); // END NAV ANIMATION
+
+} // END IF 
+    
+});
+
+});
+</script>
+
+</html>
